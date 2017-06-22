@@ -1,0 +1,30 @@
+.app-details-section {
+  padding: 0 24px;
+}
+
+.app-details-section h3 {
+  border-bottom: 1px solid grey;
+}
+
+.app-details-section .section-element {
+  margin-bottom: 10px;
+}
+
+.app-details-section .section-element label,
+.app-details-section .mat-list .mat-list-item label {
+  font-weight: bold;
+  color: grey;
+}
+
+.app-details-section .mat-list {
+  padding: 0;
+  margin-top: -20px;
+}
+
+.app-details-section .mat-list .mat-list-item {
+  border-bottom: 1px solid grey;
+}
+
+.app-details-section .no-such-data {
+  font-weight: bold;
+}

@@ -1,0 +1,44 @@
+<div fxLayout="row" fxLayoutAlign="space-between center" *ngIf="page">
+  <h2> {{title}} </h2>
+  <div> Total records: {{page.total_elements}} </div>
+</div>
+
+<ng-content></ng-content>
+
+<div fxLayout="row" fxLayoutAlign="space-between center" *ngIf="page">
+  <div>
+    Current page: {{page.number !== page.total_pages ? page.number + 1 : page.number}}
+  </div>
+  <div>
+    <button md-icon-button
+            class="pagination-button"
+            [disabled]="!isPossibleTo('first')"
+            (click)="first($event)">
+      <md-icon color="primary">first_page</md-icon>
+    </button>
+    <button md-icon-button
+            class="pagination-button"
+            [disabled]="!isPossibleTo('prev')"
+            (click)="prev($event)">
+      <md-icon color="primary">keyboard_arrow_left</md-icon>
+    </button>
+
+    <button md-icon-button
+            class="pagination-button"
+            [disabled]="!isPossibleTo('next')"
+            (click)="next($event)">
+      <md-icon color="primary">keyboard_arrow_right</md-icon>
+    </button>
+    <button md-icon-button
+            class="pagination-button"
+            [disabled]="!isPossibleTo('last')"
+            (click)="last($event)">
+      <md-icon color="primary">last_page</md-icon>
+    </button>
+  </div>
+
+  <div>
+    Total pages: {{page.total_pages}}
+  </div>
+
+</div>

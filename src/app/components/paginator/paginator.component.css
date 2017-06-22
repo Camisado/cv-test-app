@@ -1,0 +1,7 @@
+button.pagination-button[disabled] {
+  cursor: not-allowed;
+}
+
+button.pagination-button[disabled] md-icon {
+  color: grey;
+}

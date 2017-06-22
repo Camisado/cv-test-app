@@ -1,0 +1,10 @@
+<app-list-paginator [title]="listTitle" [(page)]="page" (pageChange)="getAsteroids($event)">
+  <app-list-filter (filterChange)="applyFilter($event)"></app-list-filter>
+  <md-list>
+     <md-list-item *ngFor="let asteroid of asteroids | filter:query">
+       <h4 md-line>{{asteroid.name}}</h4>
+       <p md-line class="demo-2"> Absolute Magnitude H: {{asteroid.absolute_magnitude_h}} </p>
+       <a href [routerLink]="['/details', asteroid.neo_reference_id]"><md-icon color="accent">info</md-icon></a>
+     </md-list-item>
+  </md-list>
+</app-list-paginator>

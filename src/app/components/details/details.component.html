@@ -1,0 +1,78 @@
+<div *ngIf="asteroid">
+  <div fxLayout="row" fxLayoutAlign="start center">
+    <button md-icon-button (click)="goBack($event)"><md-icon color="accent">reply</md-icon></button>
+    <h2>{{asteroid.name}}</h2>
+    <md-icon color="warn" *ngIf="asteroid.is_potentially_hazardous_asteroid">warning</md-icon>
+  </div>
+
+  <div fxLayout="row">
+    <section fxFlex class="app-details-section">
+      <div fxLayout="column">
+        <div class="section-element">
+          <label fxFlex>Absolute magnitude H:</label>
+          <span fxFlex class="value">{{asteroid.absolute_magnitude_h}}</span>
+        </div>
+        <div class="section-element">
+          <div fxLayout="row" fxLayoutAlign="start center">
+            <label>Estimated diameter (</label>
+            <md-select [(ngModel)]="selectedUnit">
+              <md-option *ngFor="let unit of units" [value]="unit">{{ unit }}</md-option>
+            </md-select>
+            <label>): </label>
+          </div>
+          <div fxLayout="column" class="value">
+            <span>Min: {{asteroid.estimated_diameter[selectedUnit].estimated_diameter_min}}</span>
+            <span>Max: {{asteroid.estimated_diameter[selectedUnit].estimated_diameter_max}}</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section fxFlex class="app-details-section">
+      Open on NASA JPL <button md-icon-button (click)="goToNasaJpl($event)"><md-icon color="accent">open_in_browser</md-icon></button>
+    </section>
+  </div>
+
+
+
+
+  <div fxLayout="row">
+    <section fxFlex class="app-details-section">
+      <h3>Orbital Data</h3>
+      <div fxLayout="column">
+        <div class="section-element" *ngFor="let key of asteroid.orbital_data | keys">
+          <label fxFlex>{{orbitalDataLabelsMap[key]}}:</label>
+          <span fxFlex class="value">{{asteroid.orbital_data[key]}}</span>
+        </div>
+      </div>
+    </section>
+
+    <section fxFlex class="app-details-section">
+      <h3>Close Approach Data</h3>
+      <md-list *ngIf="asteroid.close_approach_data.length > 0">
+        <md-list-item *ngFor="let item of asteroid.close_approach_data">
+          <md-icon md-list-icon color="primary">album</md-icon>
+          <h4 md-line><label>Close approach date:</label> {{item.close_approach_date}}</h4>
+          <p md-line><label>Orbiting body:</label> {{item.orbiting_body}}</p>
+          <dl md-line>
+            <dt><label>Relative velocity:</label></dt>
+            <dd>km/sec: {{item.relative_velocity.kilometers_per_second}}</dd>
+            <dd>km/h: {{item.relative_velocity.kilometers_per_hour}}</dd>
+            <dd>m/h: {{item.relative_velocity.miles_per_hour}}</dd>
+          </dl>
+          <dl md-line>
+            <dt><label>Miss distance:</label></dt>
+            <dd>astronomical: {{item.miss_distance.astronomical}}</dd>
+            <dd>lunar: {{item.miss_distance.lunar}}</dd>
+            <dd>kilometers: {{item.miss_distance.kilometers}}</dd>
+            <dd>miles: {{item.miss_distance.miles}}</dd>
+          </dl>
+        </md-list-item>
+      </md-list>
+      <div class="no-such-data" *ngIf="asteroid.close_approach_data.length === 0">
+        No such data.
+      </div>
+    </section>
+  </div>
+
+</div>

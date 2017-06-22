@@ -1,0 +1,8 @@
+.app-about .mat-dialog-container {
+  padding: 0;
+}
+
+.app-about .header-image {
+  background-image: url('https://pp.userapi.com/c837335/v837335372/7978/ZJSrKtrmJfE.jpg');
+  background-size: cover;
+}
